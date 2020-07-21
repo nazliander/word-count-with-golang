@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: minikube-ingress
+  annotations:
+    INGRESS.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: hello.world
+      http:
+        paths:
+          - path: /book
+            backend:
+              serviceName: book-analytics-svc
+              servicePort: 80

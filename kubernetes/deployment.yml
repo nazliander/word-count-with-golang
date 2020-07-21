@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-analytics
+spec:
+  selector:
+    matchLabels:
+      app: book-analytics
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: book-analytics
+    spec:
+      containers:
+        - name: book-analytics
+          image: book-analytics:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7979
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-analytics-svc
+spec:
+  selector:
+    app: book-analytics
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 7979
+      name: http
