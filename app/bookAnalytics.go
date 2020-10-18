@@ -17,10 +17,10 @@ func main() {
 	http.HandleFunc("/book", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Please visit: http://localhost:7979/book")
 		bookText := collectBook(searchString)
-		storeBookText(bookText, pathToStoreBook)
 		bookWordCounts := wordCount(bookText)
 		jsonCounts, _ := json.Marshal(bookWordCounts)
 		fmt.Fprintln(w, string(jsonCounts))
+		storeBookText(bookText, pathToStoreBook)
 	})
 
 	http.ListenAndServe(":7979", nil)

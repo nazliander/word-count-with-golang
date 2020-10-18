@@ -15,7 +15,13 @@
 # vendor/
 
 # Txt files
-*.txt
+book.txt
 
 # Mac stuff
 .DS_Store
+
+# Archive
+archive/
+
+# App specific
+bookAnalytics
