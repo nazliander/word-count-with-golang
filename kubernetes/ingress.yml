@@ -6,7 +6,7 @@ metadata:
     INGRESS.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: hello.world
+    - host: dev-env
       http:
         paths:
           - path: /book

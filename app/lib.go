@@ -31,7 +31,7 @@ func collectBook(bookLink string) (bookText string) {
 func wordCount(text string) (counts map[string]int) {
 	var isWord = regexp.MustCompile(`\w*`)
 	var alphaChars = regexp.MustCompile(`^[a-zA-Z]+$`).MatchString
-	var stopWords = retrieveStopwords("app/stopwords/english_stopwords.txt")
+	var stopWords = retrieveStopwords("stopwords/english_stopwords.txt")
 
 	tokenArray := isWord.FindAllString(strings.ToLower(text), -1)
 
