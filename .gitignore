@@ -23,5 +23,5 @@ book.txt
 # Archive
 archive/
 
-# App specific
-bookAnalytics
+# App related
+app/app

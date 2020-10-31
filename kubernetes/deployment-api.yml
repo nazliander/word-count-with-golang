@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: book-analytics
+  name: text-analytics
 spec:
   selector:
     matchLabels:
-      app: book-analytics
+      app: text-analytics
   replicas: 3
   template:
     metadata:
       labels:
-        app: book-analytics
+        app: text-analytics
     spec:
       containers:
-        - name: book-analytics
-          image: book-analytics:latest
+        - name: text-analytics
+          image: text-analytics:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 7979
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: book-analytics-svc
+  name: text-analytics-svc
 spec:
   selector:
-    app: book-analytics
+    app: text-analytics
   ports:
     - protocol: TCP
       port: 80

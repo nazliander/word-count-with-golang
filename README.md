@@ -19,13 +19,13 @@ go run *.go
 To build:
 
 ```
-docker build . -t book-analytics
+docker build . -t text-analytics
 ```
 
 To run on http://localhost:8080:
 
 ```
-docker run -p 8080:7979 -it book-analytics
+docker run -p 8080:7979 -it text-analytics
 ```
 
 ### Run from Minikube:
@@ -45,7 +45,7 @@ eval $(minikube docker-env)
 To build the Docker image with a tag:
 
 ```
-docker build . -t book-analytics
+docker build . -t text-analytics
 ```
 
 To enable the Ingress extension in Minikube:
@@ -72,7 +72,7 @@ To set a host name locally for the Minikube IP:
 echo "$(minikube ip) hello.world" | sudo tee -a /etc/hosts
 ```
 
-To deploy the Book Analytics (deployment and service) together with Load Balancer:
+To deploy the Text Analytics (deployment and service) together with Load Balancer:
 
 ```
 kubectl apply -f ./kubernetes/
@@ -81,5 +81,5 @@ kubectl apply -f ./kubernetes/
 After this step curl on the initialized path must be working :)
 
 ```
-curl http://hello.world/book
+curl http://hello.world/text-collect
 ```

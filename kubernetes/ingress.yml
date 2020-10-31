@@ -9,7 +9,7 @@ spec:
     - host: dev-env
       http:
         paths:
-          - path: /book-collect
+          - path: /text-collect
             backend:
-              serviceName: book-analytics-svc
+              serviceName: text-analytics-svc
               servicePort: 80

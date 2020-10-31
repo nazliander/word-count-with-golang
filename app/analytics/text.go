@@ -1,37 +1,18 @@
-package main
+package analytics
 
 import (
 	"bufio"
-	"fmt"
-	"io/ioutil"
-	"net/http"
 	"os"
 	"regexp"
 	"strings"
 )
 
-func collectBook(bookLink string) (bookText string) {
-	resp, err := http.Get(bookLink)
-
-	// handle the error if there is one
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	bookBytes, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-	bookText = string(bookBytes)
-	// show the HTML code as a string %s
-	return bookText
-}
-
-func wordCount(text string) (counts map[string]int) {
+// WordCount given a string counts the words and returns to
+// a word-count map.
+func WordCount(text string) (counts map[string]int) {
 	var isWord = regexp.MustCompile(`\w*`)
 	var alphaChars = regexp.MustCompile(`^[a-zA-Z]+$`).MatchString
-	var stopWords = retrieveStopwords("stopwords/english_stopwords.txt")
+	var stopWords = retrieveStopwords("analytics/stopwords/english_stopwords.txt")
 
 	tokenArray := isWord.FindAllString(strings.ToLower(text), -1)
 
@@ -44,13 +25,6 @@ func wordCount(text string) (counts map[string]int) {
 	return counts
 }
 
-func storeBookText(text string, path string) {
-	file, _ := os.Create(path)
-	l, _ := file.WriteString(text)
-	fmt.Println(l, "File written successfully")
-	_ = file.Close()
-}
-
 func retrieveStopwords(path string) (stopwords []string) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -60,7 +34,6 @@ func retrieveStopwords(path string) (stopwords []string) {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-
 		stopwords = append(stopwords, scanner.Text())
 	}
 
